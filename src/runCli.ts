@@ -8,6 +8,7 @@ export interface CliArgs {
      * An array of exclude paths
      */
     exclude: string[],
+    input: string[],
     dontSaveSameFile: boolean
 }
 
@@ -18,9 +19,14 @@ export async function runCli (cliArgs: CliArgs): Promise<any> {
         cliArgs.exclude.shift()
     }
 
-    const files = glob.sync('**/*.graphqls', {
-        ignore: cliArgs.exclude
-    })
+    let files;
+    if (cliArgs.input.length > 0) {
+        files = cliArgs.input;
+    } else {
+        files = glob.sync('**/*.graphqls', {
+            ignore: cliArgs.exclude
+        })
+    }
 
     const converter = new Converter()
 

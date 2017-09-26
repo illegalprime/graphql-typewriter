@@ -25,9 +25,15 @@ program.version(require('../package.json').version)
     .option(
       '--dont-save-same-file', 'do not save a file if the contents has not changed. ' +
       'This read each target file prior to loading')
+    .option(
+      '-i, --input <files>',
+      'a list of files to parse instead of globbing *.graphqls',
+      (current, last) => last.concat([current]),
+      [])
     .parse(process.argv)
 
 runCli({
+    input: stringArray(program['input'], "Verification of 'input'-parameter"),
     exclude: stringArray(program['exclude'],"Verification of 'exclude'-parameter"),
     dontSaveSameFile: Boolean(program['dontSaveSameFile'])
 })

@@ -29,7 +29,7 @@ export class Renderer {
         const namespace = source`
 export namespace schema {
     export type GraphqlField<Args, Result, Ctx> = Result | Promise<Result> |
-        ((args: Args, context: Ctx) => Result | Promise<Result>)
+        ((root: any, args: Args, context: Ctx) => Result | Promise<Result>)
 
     ${this.renderEnums(root.data.__schema.types)}
     ${this.renderUnions(root.data.__schema.types)}

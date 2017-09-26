@@ -27,6 +27,7 @@ interfaces that can be used to implement a graphql-root for this schema.
     -V, --version          output the version number
     -x, --exclude <dirs>   a list of directories to exclude
     --dont-save-same-file  do not save a file if the contents has not changed. This read each target file prior to loading
+    -i, --input <files>    a list of files to parse instead of globbing *.graphqls
     -h, --help             output usage information
 ```
 
